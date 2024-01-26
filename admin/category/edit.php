@@ -1,23 +1,32 @@
 <?php
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM categories WHERE id = $id";
+  $category = pdo_query_one($sql);
+} else {
+  header('location: ./?page=category');
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $categoryName = $_POST['categoryName'];
-  $sql = "INSERT INTO categories (name) VALUES ('$categoryName')";
+  $sql = "UPDATE categories SET name = '$categoryName' WHERE id = $id";
   pdo_execute($sql);
-  echo '<h3 class="alert alert-success">Add category success</h3>';
+  header('location: ./?page=category');
 }
 ?>
+
 <div class="alert alert-danger" role="alert">
-  <h1 class="text-center">Add New Category</h1>
+  <h1 class="text-center">Edit Category</h1>
 </div>
 
 <form action="" style="margin: auto; max-width: 500px;" method="post">
   <div class="mb-3">
     <label for="category-id" class="form-label fs-3">Category id:</label>
-    <input type="text" class="form-control" disabled>
+    <input type="text" class="form-control" disabled value="<?php echo $category['id']; ?>">
   </div>
   <div class="mb-3">
     <label for="category-name" class="form-label fs-3">Category name:</label>
-    <input type="text" class="form-control" id="category-name" name="categoryName">
+    <input type="text" class="form-control" id="category-name" name="categoryName" value="<?php echo $category['name']; ?>">
   </div>
   <div class="d-flex justify-content-between">
     <div>
