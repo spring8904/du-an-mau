@@ -41,6 +41,7 @@
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" disabled type="submit">Search</button>
+            <a class="ms-2 btn btn-success" href="./admin">Admin</a>
           </form>
         </div>
       </div>

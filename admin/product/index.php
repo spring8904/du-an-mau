@@ -1,5 +1,5 @@
 <main class="container">
-  <h1 class="text-center alert alert-danger">List Category</h1>
+  <h1 class="text-center alert alert-danger">List Product</h1>
   <table class=" table table-striped table-hover table-bordered">
     <thead>
       <tr>
@@ -7,24 +7,30 @@
           <input class="form-check-input mt-0" type="checkbox" name="select-all">
         </th>
         <th scope="col">ID</th>
+        <th scope="col">Image</th>
         <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Category</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <?php
-      foreach (get_all_categories() as $category) {
-        extract($category)
+      foreach (get_all_products() as $product) {
+        extract($product);
       ?>
         <tr>
           <td class="text-center">
-            <input class="form-check-input mt-0" type="checkbox" value="<?php echo $category_id ?>">
+            <input class="form-check-input mt-0" type="checkbox" value="<?php echo $product_id ?>">
           </td>
-          <td><?php echo $category_id ?></td>
+          <td><?php echo $product_id ?></td>
+          <td><img width="100px" height="100px" src="../uploads/<?php echo $product_image ?>" alt="<?php echo $product_name ?>"></td>
+          <td><?php echo $product_name ?></td>
+          <td><?php echo $product_price ?></td>
           <td><?php echo $category_name ?></td>
           <td>
-            <a href="./?page=category&action=edit&id=<?php echo $category_id ?>" class="btn btn-warning">Edit</a>
-            <a href="./?page=category&action=delete&id=<?php echo $category_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?php echo $category_name ?>')">Delete</a>
+            <a href="./?page=product&action=edit&id=<?php echo $product_id ?>" class="btn btn-warning">Edit</a>
+            <a href="./?page=product&action=delete&id=<?php echo $product_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?php echo $product_name ?>')">Delete</a>
           </td>
         </tr>
       <?php
@@ -37,7 +43,7 @@
     <button class="btn btn-primary" onclick="selectAll()">Select All</button>
     <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
     <a href="#" class="btn btn-danger">Delete Selected</a>
-    <a href="./?page=category&action=add" class="btn btn-success">Add Category</a>
+    <a href="./?page=product&action=add" class="btn btn-success">Add Product</a>
   </div>
 </main>
 

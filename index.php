@@ -7,6 +7,7 @@ switch ($page) {
     include 'components/header.php';
     include 'pages/product.php';
     break;
+
   default:
     $title = 'Home';
     include 'components/header.php';
