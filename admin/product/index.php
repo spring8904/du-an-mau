@@ -1,6 +1,28 @@
 <main class="container">
   <h1 class="text-center alert alert-danger">List Product</h1>
-  <table class=" table table-striped table-hover table-bordered">
+
+  <form class="d-flex gap-2" method="post">
+    <input class="form-control" type="search" placeholder="Search" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
+    <select class="form-select" id="category-id" name="category_id">
+      <?php if (isset($_POST['category_id']) && $_POST['category_id'] != 'all') { ?>
+        <option value="<?php echo $_POST['category_id'] ?>" hidden selected>
+          <?php echo get_category_by_id($_POST['category_id'])['category_name'] ?>
+        </option>
+      <?php } ?>
+      <option value="all">All Products</option>
+      <?php
+      foreach ($all_categories as $category) {
+        extract($category)
+      ?>
+        <option value="<?php echo $category_id ?>"><?php echo $category_name ?></option>
+      <?php
+      }
+      ?>
+    </select>
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  <table class="mt-3 table table-striped table-hover table-bordered">
     <thead>
       <tr>
         <th scope="col" class="text-center">
@@ -16,7 +38,7 @@
     </thead>
     <tbody>
       <?php
-      foreach (get_all_products() as $product) {
+      foreach ($products as $product) {
         extract($product);
       ?>
         <tr>
@@ -29,8 +51,8 @@
           <td><?php echo $product_price ?></td>
           <td><?php echo $category_name ?></td>
           <td>
-            <a href="./?page=product&action=edit&id=<?php echo $product_id ?>" class="btn btn-warning">Edit</a>
-            <a href="./?page=product&action=delete&id=<?php echo $product_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?php echo $product_name ?>')">Delete</a>
+            <a href="./?controller=product&action=edit&id=<?php echo $product_id ?>" class="btn btn-warning">Edit</a>
+            <a href="./?controller=product&action=delete&id=<?php echo $product_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?php echo $product_name ?>')">Delete</a>
           </td>
         </tr>
       <?php
@@ -39,41 +61,16 @@
     </tbody>
   </table>
 
+  <div class="d-flex justify-content-center">
+    <?php include '../components/pagination.php' ?>
+  </div>
+
   <div class="d-flex gap-2">
     <button class="btn btn-primary" onclick="selectAll()">Select All</button>
     <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
     <a href="#" class="btn btn-danger">Delete Selected</a>
-    <a href="./?page=product&action=add" class="btn btn-success">Add Product</a>
+    <a href="./?controller=product&action=add" class="btn btn-success">Add Product</a>
   </div>
 </main>
 
-<script>
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]:not([name="select-all"])');
-  const inputSelectAll = document.querySelector('input[name="select-all"]');
-
-  const selectAll = () => {
-    inputSelectAll.checked = true;
-    checkboxes.forEach(checkbox => {
-      checkbox.checked = true;
-    })
-  }
-
-  const deselectAll = () => {
-    inputSelectAll.checked = false;
-    checkboxes.forEach(checkbox => {
-      checkbox.checked = false;
-    })
-  }
-
-  inputSelectAll.onchange = () => {
-    checkboxes.forEach(checkbox => {
-      checkbox.checked = inputSelectAll.checked;
-    })
-  }
-
-  checkboxes.forEach(checkbox => {
-    checkbox.onchange = () => {
-      inputSelectAll.checked = [...checkboxes].every(checkbox => checkbox.checked);
-    }
-  })
-</script>
+<script src="../js/select.js"></script>

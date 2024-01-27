@@ -26,16 +26,12 @@
               <a class="nav-link" aria-current="page" href=".">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?page=category">Category</a>
+              <a class="nav-link" href="?controller=category">Category</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?page=product">Product</a>
+              <a class="nav-link" href="?controller=product">Product</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" disabled type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>

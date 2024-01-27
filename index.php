@@ -1,7 +1,7 @@
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] : '';
+$controller = isset($_GET['controller']) ? $_GET['controller'] : '';
 
-switch ($page) {
+switch ($controller) {
   case 'product':
     $title = 'Product';
     include 'components/header.php';

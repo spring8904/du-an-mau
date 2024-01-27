@@ -26,23 +26,19 @@
               <a class="nav-link" aria-current="page" href=".">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./?page=product">Product</a>
+              <a class="nav-link" href="?controller=product">Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./?page=product">Customer</a>
+              <a class="nav-link" href="?controller=product">Customer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./?page=product">Comment</a>
+              <a class="nav-link" href="?controller=product">Comment</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./?page=product">Login</a>
+              <a class="nav-link" href="?controller=product">Login</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" disabled type="submit">Search</button>
-            <a class="ms-2 btn btn-success" href="./admin">Admin</a>
-          </form>
+          <a class="ms-2 btn btn-success" href="./admin">Admin</a>
         </div>
       </div>
     </nav>

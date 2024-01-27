@@ -17,9 +17,16 @@ function delete_category($id)
   pdo_execute($sql);
 }
 
-function get_all_categories()
+function get_categories($limit = '', $offset = '')
 {
   $sql = "SELECT * FROM categories ORDER BY category_id DESC";
+  if ($limit != '') {
+    $sql .= " LIMIT $limit";
+  }
+
+  if ($offset != '') {
+    $sql .= " OFFSET $offset";
+  }
   return pdo_query($sql);
 }
 

@@ -5,7 +5,7 @@ function insert_product($name, $price, $description, $image, $category_id)
 
   if ($image != '') {
     $sql = "INSERT INTO products(product_name, product_price, product_description, product_image, category_id) 
-          VALUES ('$name', '$price', '$description', '$image', '$category_id')";
+            VALUES ('$name', '$price', '$description', '$image', '$category_id')";
     pdo_execute($sql);
   }
 }
@@ -30,12 +30,29 @@ function delete_product($id)
   pdo_execute($sql);
 }
 
-function get_all_products()
+function get_products($categories_id = 'all', $search = '', $limit = '', $offset = '')
 {
-  $sql = "SELECT * FROM products 
-          JOIN categories 
-          ON products.category_id = categories.category_id
-          ORDER BY product_id DESC";
+  $sql = "SELECT * FROM products JOIN categories ON products.category_id = categories.category_id";
+
+  if ($categories_id == 'all') {
+    if ($search != '') $sql .= " WHERE product_name LIKE '%$search%'";
+  } else if ($categories_id != '') {
+    if ($search != '') {
+      $sql .= " WHERE products.category_id = $categories_id 
+              AND product_name LIKE '%$search%'";
+    } else $sql .= " WHERE products.category_id = $categories_id";
+  }
+
+  $sql .= " ORDER BY product_id DESC";
+
+  if ($limit != '') {
+    $sql .= " LIMIT $limit";
+  }
+
+  if ($offset != '') {
+    $sql .= " OFFSET $offset";
+  }
+  echo $sql;
   return pdo_query($sql);
 }
 
