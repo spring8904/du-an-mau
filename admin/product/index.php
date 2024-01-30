@@ -1,16 +1,25 @@
 <?php
-$limit = 12;
-$categories_id = isset($_POST['category_id'])
+$limit = 8;
+$category_id = isset($_POST['category_id'])
   ? $_POST['category_id']
-  : 'all';
+  : '';
+
 $products = get_products(
-  $categories_id,
+  $category_id,
   $search,
   $limit,
   ($page - 1) * $limit
 );
-$total_products = count($products);
+
+if ($category_id == '') {
+  $all_products = get_products();
+} else {
+  $all_products = get_products($category_id);
+}
+
+$total_products = count($all_products);
 $total_pages = ceil($total_products / $limit);
+
 $prev_page = $page <= 1 ? 1 : $page - 1;
 $next_page = $page >= $total_pages ? $total_pages : $page + 1;
 ?>
@@ -19,9 +28,9 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
   <h1 class="text-center alert alert-danger">List Product</h1>
 
   <form class="d-flex gap-2" method="post">
-    <input class="form-control" type="search" placeholder="Search" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
+    <input class="form-control" type="search" placeholder="Product name" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
     <select class="form-select" id="category-id" name="category_id">
-      <?php if (isset($_POST['category_id']) && $_POST['category_id'] != 'all') { ?>
+      <?php if (isset($_POST['category_id']) && $_POST['category_id'] != '') { ?>
         <option value="<?= $_POST['category_id'] ?>" hidden selected>
           <?= get_category_by_id($_POST['category_id'])['category_name'] ?>
         </option>
@@ -38,6 +47,8 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
     </select>
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
+
+  <?php include '../components/group-btn.php' ?>
 
   <table class="mt-3 table table-striped table-hover table-bordered">
     <thead>
@@ -80,16 +91,9 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
     </tbody>
   </table>
 
+  <?php include '../components/group-btn.php' ?>
+
   <div class="d-flex justify-content-center">
     <?php include '../components/pagination.php' ?>
   </div>
-
-  <div class="d-flex gap-2">
-    <button class="btn btn-primary" onclick="selectAll()">Select All</button>
-    <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
-    <a href="#" class="btn btn-danger">Delete Selected</a>
-    <a href="./?controller=product&action=add" class="btn btn-success">Add Product</a>
-  </div>
 </main>
-
-<script src="../js/select.js"></script>

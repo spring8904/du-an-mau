@@ -79,5 +79,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </form>
 </main>
-
-<script src="../js/previewImage.js"></script>

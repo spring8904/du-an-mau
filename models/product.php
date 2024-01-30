@@ -30,17 +30,17 @@ function delete_product($id)
   pdo_execute($sql);
 }
 
-function get_products($categories_id = 'all', $search = '', $limit = '', $offset = '')
+function get_products($category_id = '', $search = '', $limit = '', $offset = '')
 {
   $sql = "SELECT * FROM products JOIN categories ON products.category_id = categories.category_id";
 
-  if ($categories_id == 'all') {
+  if ($category_id == '') {
     if ($search != '') $sql .= " WHERE product_name LIKE '%$search%'";
-  } else if ($categories_id != '') {
+  } else if ($category_id != '') {
     if ($search != '') {
-      $sql .= " WHERE products.category_id = $categories_id 
+      $sql .= " WHERE products.category_id = $category_id 
               AND product_name LIKE '%$search%'";
-    } else $sql .= " WHERE products.category_id = $categories_id";
+    } else $sql .= " WHERE products.category_id = $category_id";
   }
 
   $sql .= " ORDER BY product_id DESC";

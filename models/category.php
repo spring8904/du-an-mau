@@ -17,9 +17,16 @@ function delete_category($id)
   pdo_execute($sql);
 }
 
-function get_categories($limit = '', $offset = '')
+function get_categories($search = '', $limit = '', $offset = '')
 {
-  $sql = "SELECT * FROM categories ORDER BY category_id DESC";
+  $sql = "SELECT * FROM categories";
+
+  if ($search != '') {
+    $sql .= " WHERE category_name LIKE '%$search%'";
+  }
+
+  $sql .= " ORDER BY category_id DESC";
+
   if ($limit != '') {
     $sql .= " LIMIT $limit";
   }

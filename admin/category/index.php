@@ -1,7 +1,7 @@
 <?php
 $limit = 20;
-$categories = get_categories($limit, ($page - 1) * $limit);
-$total_categories = count($categories);
+$categories = get_categories($search, $limit, ($page - 1) * $limit);
+$total_categories = count($all_categories);
 $total_pages = ceil($total_categories / $limit);
 $prev_page = $page <= 1 ? 1 : $page - 1;
 $next_page = $page >= $total_pages ? $total_pages : $page + 1;
@@ -11,9 +11,11 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
   <h1 class="text-center alert alert-danger">List Category</h1>
 
   <form class="d-flex" method="post">
-    <input class="form-control me-2" type="search" placeholder="Search" name="search">
+    <input class="form-control me-2" type="search" placeholder="Category name" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
+
+  <?php include '../components/group-btn.php' ?>
 
   <table class=" table table-striped table-hover table-bordered mt-3">
     <thead>
@@ -48,16 +50,9 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
     </tbody>
   </table>
 
+  <?php include '../components/group-btn.php' ?>
+
   <div class="d-flex justify-content-center">
     <?php include '../components/pagination.php' ?>
   </div>
-
-  <div class="d-flex gap-2">
-    <button class="btn btn-primary" onclick="selectAll()">Select All</button>
-    <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
-    <a href="#" class="btn btn-danger">Delete Selected</a>
-    <a href="./?controller=category&action=add" class="btn btn-success">Add Category</a>
-  </div>
 </main>
-
-<script src="../js/select.js"></script>
