@@ -65,7 +65,7 @@ switch ($controller) {
         $title = 'Add Product';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          insert_product($_POST['product_name'], $_POST['product_price'], $_POST['product_description'], $_FILES['product_image'], $_POST['category_id']);
+          insert_product($_POST['product_name'], $_POST['product_price'], $_POST['product_sale'], $_POST['product_description'], $_FILES['product_image'], $_POST['category_id']);
           echo '<script>alert("Add Product Successfully")</script>';
         }
 
@@ -83,7 +83,7 @@ switch ($controller) {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          update_product($product_id, $_POST['product_name'], $_POST['product_price'], $_POST['product_description'], $_FILES['product_image'], $_POST['category_id']);
+          update_product($product_id, $_POST['product_name'], $_POST['product_price'], $_POST['product_sale'], $_POST['product_description'], $_FILES['product_image'], $_POST['category_id']);
           header('location: ./?controller=product');
         }
 

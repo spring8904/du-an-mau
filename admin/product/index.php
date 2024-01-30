@@ -32,6 +32,7 @@
         <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
+        <th scope="col">Sale(%)</th>
         <th scope="col">Category</th>
         <th scope="col">Action</th>
       </tr>
@@ -49,6 +50,7 @@
           <td><img width="100px" height="100px" src="../uploads/<?= $product_image ?>" alt="<?= $product_name ?>"></td>
           <td><?= $product_name ?></td>
           <td><?= $product_price ?></td>
+          <td><?= $product_sale ?></td>
           <td><?= $category_name ?></td>
           <td>
             <a href="./?controller=product&action=edit&id=<?= $product_id ?>" class="btn btn-warning">Edit</a>

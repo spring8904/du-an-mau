@@ -9,11 +9,11 @@
       <input type="text" class="form-control" disabled value="<?= $category_id; ?>">
     </div>
     <div class="mb-3">
-      <label for="name" class="form-label fs-3">Category name:</label>
-      <input type="text" class="form-control" id="name" name="category_name" value="<?= $category_name; ?>">
+      <label for="name" class="form-label fs-3">Category name:<span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="name" name="category_name" value="<?= $category_name; ?>" required>
     </div>
     <div class="d-flex justify-content-between">
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-waring">Save</button>
       <a href="./?controller=category" class="btn btn-secondary">Go back</a>
     </div>
   </form>

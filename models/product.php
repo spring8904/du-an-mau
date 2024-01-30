@@ -1,16 +1,16 @@
 <?php
-function insert_product($name, $price, $description, $image, $category_id)
+function insert_product($name, $price, $sale, $description, $image, $category_id)
 {;
   $image = upload_file($image);
 
   if ($image != '') {
-    $sql = "INSERT INTO products(product_name, product_price, product_description, product_image, category_id) 
-            VALUES ('$name', '$price', '$description', '$image', '$category_id')";
+    $sql = "INSERT INTO products(product_name, product_price, product_sale, product_description, product_image, category_id) 
+            VALUES ('$name', '$price', '$sale', '$description', '$image', '$category_id')";
     pdo_execute($sql);
   }
 }
 
-function update_product($id, $name, $price, $description, $image, $category_id)
+function update_product($id, $name, $price, $sale, $description, $image, $category_id)
 {
   if (isset($image) && $image['name'] != '')
     $image = upload_file($image);
@@ -18,7 +18,7 @@ function update_product($id, $name, $price, $description, $image, $category_id)
     $image = get_product_by_id($id)['product_image'];
 
   $sql = "UPDATE products 
-          SET product_name = '$name', product_price = '$price', product_description = '$description', product_image = '$image', category_id = '$category_id' 
+          SET product_name = '$name', product_price = '$price', product_sale='$sale', product_description = '$description', product_image = '$image', category_id = '$category_id' 
           WHERE product_id = $id";
   pdo_execute($sql);
 }
@@ -72,7 +72,7 @@ function upload_file($file)
   $file["name"] = uniqid() . '.' . $ext;
   $target_file = $target_dir . basename($file["name"]);
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-  $allowedTypes = array('jpg', 'png', 'jpeg');
+  $allowedTypes = array('jpg', 'png', 'jpeg', 'webp');
 
   if (!in_array($imageFileType, $allowedTypes)) {
     echo "Type is not allowed";
@@ -81,7 +81,7 @@ function upload_file($file)
   } elseif ($file["size"] > 5000000) {
     echo "Sorry, your file is too large.";
   } elseif (move_uploaded_file($file["tmp_name"], $target_file)) {
-    echo "The file " . basename($file["name"]) . " has been uploaded.";
+    // echo "The file " . basename($file["name"]) . " has been uploaded.";
     return $file["name"];
   }
 

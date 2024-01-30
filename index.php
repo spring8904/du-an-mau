@@ -33,8 +33,6 @@ switch ($controller) {
 
   default:
     $title = 'Home';
-    $limit = 12;
-    $products = get_products('', '', $limit);
     include 'components/header.php';
     include 'pages/home.php';
     break;

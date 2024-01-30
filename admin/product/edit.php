@@ -10,18 +10,23 @@
         </div>
 
         <div class="mb-3">
-          <label for="name" class="form-label fs-4">Product name:</label>
-          <input type="text" class="form-control" id="name" name="product_name" value="<?= $product_name ?>">
+          <label for="name" class="form-label fs-4">Product name:<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="name" name="product_name" value="<?= $product_name ?>" required>
         </div>
 
         <div class="mb-3">
-          <label for="price" class="form-label fs-4">Product price:</label>
-          <input type="text" class="form-control" id="price" name="product_price" value="<?= $product_price ?>">
+          <label for="price" class="form-label fs-4">Product price:<span class="text-danger">*</span></label>
+          <input type="number" class="form-control" id="price" name="product_price" value="<?= $product_price ?>" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="sale" class="form-label fs-4">Product sale:</label>
+          <input type="number" class="form-control" id="sale" name="product_sale" value="<?= $product_sale ?>">
         </div>
 
         <div class="my-3">
-          <label class="form-label fs-4" for="category-id">Category:</label>
-          <select class="form-select" id="category-id" name="category_id">
+          <label class="form-label fs-4" for="category-id">Category:<span class="text-danger">*</span></label>
+          <select class="form-select" id="category-id" name="category_id" required>
             <option value="<?= $category_id ?>" hidden><?= $category_name ?></option>
             <?php
             foreach ($all_categories as $category) {
@@ -53,8 +58,7 @@
 
     <div class="d-flex justify-content-between mt-3">
       <div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="reset" class="btn btn-danger">Reset</button>
+        <button type="submit" class="btn btn-warning">Save</button>
       </div>
       <a href="./?controller=product" class="btn btn-secondary">Go back</a>
     </div>

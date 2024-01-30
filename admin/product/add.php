@@ -9,19 +9,24 @@
         </div>
 
         <div class="mb-3">
-          <label for="name" class="form-label fs-4">Product name:</label>
-          <input type="text" class="form-control" id="name" name="product_name">
+          <label for="name" class="form-label fs-4">Product name:<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="name" name="product_name" required autofocus>
         </div>
 
         <div class="mb-3">
-          <label for="price" class="form-label fs-4">Product price:</label>
-          <input type="text" class="form-control" id="price" name="product_price">
+          <label for="price" class="form-label fs-4">Product price:<span class="text-danger">*</span></label>
+          <input type="number" class="form-control" id="price" name="product_price" placeholder="0" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="sale" class="form-label fs-4">Product sale(%):</label>
+          <input type="number" max="100" class="form-control" id="sale" name="product_sale" placeholder="0">
         </div>
 
         <div class="my-3">
-          <label class="label-form fs-4" for="category-id">Category:</label>
-          <select class="form-select" id="category-id" name="category_id">
-            <option selected hidden>Choose...</option>
+          <label class="label-form fs-4" for="category-id">Category:<span class="text-danger">*</span></label>
+          <select class="form-select" id="category-id" name="category_id" required>
+            <option selected hidden value="">Choose...</option>
             <?php
             foreach ($all_categories as $category) {
               extract($category)
@@ -40,9 +45,9 @@
           <textarea type="text" class="form-control" id="description" name="product_description" rows="2"></textarea>
         </div>
 
-        <label for="price" class="form-label fs-4">Product image:</label>
+        <label for="price" class="form-label fs-4">Product image:<span class="text-danger">*</span></label>
         <div class="mb-3 input-group">
-          <input type="file" class="form-control" id="image" accept="image/*" onchange="loadFile(event)" name="product_image">
+          <input type="file" class="form-control" id="image" accept="image/*" onchange="loadFile(event)" name="product_image" required>
           <label class="input-group-text" for="image">Upload</label>
         </div>
 
