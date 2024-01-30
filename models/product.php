@@ -52,7 +52,7 @@ function get_products($categories_id = 'all', $search = '', $limit = '', $offset
   if ($offset != '') {
     $sql .= " OFFSET $offset";
   }
-  echo $sql;
+
   return pdo_query($sql);
 }
 

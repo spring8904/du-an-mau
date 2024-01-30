@@ -26,7 +26,7 @@
             foreach ($all_categories as $category) {
               extract($category)
             ?>
-              <option value="<?php echo $category_id ?>"><?php echo $category_name ?></option>
+              <option value="<?= $category_id ?>"><?= $category_name ?></option>
             <?php
             }
             ?>

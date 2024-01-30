@@ -6,28 +6,28 @@
       <div class="col-md">
         <div class="mb-3">
           <label for="id" class="form-label fs-4">Product id:</label>
-          <input type="text" class="form-control" disabled value="<?php echo $product_id ?>">
+          <input type="text" class="form-control" disabled value="<?= $product_id ?>">
         </div>
 
         <div class="mb-3">
           <label for="name" class="form-label fs-4">Product name:</label>
-          <input type="text" class="form-control" id="name" name="product_name" value="<?php echo $product_name ?>">
+          <input type="text" class="form-control" id="name" name="product_name" value="<?= $product_name ?>">
         </div>
 
         <div class="mb-3">
           <label for="price" class="form-label fs-4">Product price:</label>
-          <input type="text" class="form-control" id="price" name="product_price" value="<?php echo $product_price ?>">
+          <input type="text" class="form-control" id="price" name="product_price" value="<?= $product_price ?>">
         </div>
 
         <div class="my-3">
           <label class="form-label fs-4" for="category-id">Category:</label>
           <select class="form-select" id="category-id" name="category_id">
-            <option value="<?php echo $category_id ?>" hidden><?php echo $category_name ?></option>
+            <option value="<?= $category_id ?>" hidden><?= $category_name ?></option>
             <?php
             foreach ($all_categories as $category) {
               extract($category)
             ?>
-              <option value="<?php echo $category_id ?>"><?php echo $category_name ?></option>
+              <option value="<?= $category_id ?>"><?= $category_name ?></option>
             <?php
             }
             ?>
@@ -38,7 +38,7 @@
       <div class="col-md">
         <div class="mb-3">
           <label for="description" class="form-label fs-4">Product description:</label>
-          <textarea type="text" class="form-control" id="description" name="product_description" value="<?php echo $product_description ?>" rows="2"></textarea>
+          <textarea type="text" class="form-control" id="description" name="product_description" value="<?= $product_description ?>" rows="2"></textarea>
         </div>
 
         <label for="price" class="form-label fs-4">Product image:</label>
@@ -47,7 +47,7 @@
           <label class="input-group-text" for="image">Upload</label>
         </div>
 
-        <div class="text-center"><img src="../uploads/<?php echo $product_image ?>" id="output" width="200px" height="200px" /></div>
+        <div class="text-center"><img src="../uploads/<?= $product_image ?>" id="output" width="200px" height="200px" /></div>
       </div>
     </div>
 

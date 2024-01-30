@@ -5,8 +5,8 @@
     <input class="form-control" type="search" placeholder="Search" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
     <select class="form-select" id="category-id" name="category_id">
       <?php if (isset($_POST['category_id']) && $_POST['category_id'] != 'all') { ?>
-        <option value="<?php echo $_POST['category_id'] ?>" hidden selected>
-          <?php echo get_category_by_id($_POST['category_id'])['category_name'] ?>
+        <option value="<?= $_POST['category_id'] ?>" hidden selected>
+          <?= get_category_by_id($_POST['category_id'])['category_name'] ?>
         </option>
       <?php } ?>
       <option value="all">All Products</option>
@@ -14,7 +14,7 @@
       foreach ($all_categories as $category) {
         extract($category)
       ?>
-        <option value="<?php echo $category_id ?>"><?php echo $category_name ?></option>
+        <option value="<?= $category_id ?>"><?= $category_name ?></option>
       <?php
       }
       ?>
@@ -43,16 +43,16 @@
       ?>
         <tr>
           <td class="text-center">
-            <input class="form-check-input mt-0" type="checkbox" value="<?php echo $product_id ?>">
+            <input class="form-check-input mt-0" type="checkbox" value="<?= $product_id ?>">
           </td>
-          <td><?php echo $product_id ?></td>
-          <td><img width="100px" height="100px" src="../uploads/<?php echo $product_image ?>" alt="<?php echo $product_name ?>"></td>
-          <td><?php echo $product_name ?></td>
-          <td><?php echo $product_price ?></td>
-          <td><?php echo $category_name ?></td>
+          <td><?= $product_id ?></td>
+          <td><img width="100px" height="100px" src="../uploads/<?= $product_image ?>" alt="<?= $product_name ?>"></td>
+          <td><?= $product_name ?></td>
+          <td><?= $product_price ?></td>
+          <td><?= $category_name ?></td>
           <td>
-            <a href="./?controller=product&action=edit&id=<?php echo $product_id ?>" class="btn btn-warning">Edit</a>
-            <a href="./?controller=product&action=delete&id=<?php echo $product_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?php echo $product_name ?>')">Delete</a>
+            <a href="./?controller=product&action=edit&id=<?= $product_id ?>" class="btn btn-warning">Edit</a>
+            <a href="./?controller=product&action=delete&id=<?= $product_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product_name ?>')">Delete</a>
           </td>
         </tr>
       <?php

@@ -6,11 +6,11 @@
   <form style="margin: auto; max-width: 500px;" method="post">
     <div class="mb-3">
       <label for="id" class="form-label fs-3">Category id:</label>
-      <input type="text" class="form-control" disabled value="<?php echo $category_id; ?>">
+      <input type="text" class="form-control" disabled value="<?= $category_id; ?>">
     </div>
     <div class="mb-3">
       <label for="name" class="form-label fs-3">Category name:</label>
-      <input type="text" class="form-control" id="name" name="category_name" value="<?php echo $category_name; ?>">
+      <input type="text" class="form-control" id="name" name="category_name" value="<?= $category_name; ?>">
     </div>
     <div class="d-flex justify-content-between">
       <button type="submit" class="btn btn-primary">Save</button>

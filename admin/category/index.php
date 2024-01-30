@@ -24,13 +24,13 @@
       ?>
         <tr>
           <td class="text-center">
-            <input class="form-check-input mt-0" type="checkbox" value="<?php echo $category_id ?>">
+            <input class="form-check-input mt-0" type="checkbox" value="<?= $category_id ?>">
           </td>
-          <td><?php echo $category_id ?></td>
-          <td><?php echo $category_name ?></td>
+          <td><?= $category_id ?></td>
+          <td><?= $category_name ?></td>
           <td>
-            <a href="./?controller=category&action=edit&id=<?php echo $category_id ?>" class="btn btn-warning">Edit</a>
-            <a href="./?controller=category&action=delete&id=<?php echo $category_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?php echo $category_name ?>')">Delete</a>
+            <a href="./?controller=category&action=edit&id=<?= $category_id ?>" class="btn btn-warning">Edit</a>
+            <a href="./?controller=category&action=delete&id=<?= $category_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?= $category_name ?>')">Delete</a>
           </td>
         </tr>
       <?php
