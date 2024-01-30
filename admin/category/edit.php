@@ -1,3 +1,17 @@
+<?php
+if (isset($_GET['id'])) {
+  $category = get_category_by_id($_GET['id']);
+  extract($category);
+} else {
+  header('location: ./?controller=category');
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  update_category($id, $_POST['category_name']);
+  header('location: ./?controller=category');
+}
+?>
+
 <main class="container">
   <div class="alert alert-danger" role="alert">
     <h1 class="text-center">Edit Category</h1>

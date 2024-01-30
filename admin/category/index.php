@@ -1,3 +1,12 @@
+<?php
+$limit = 20;
+$categories = get_categories($limit, ($page - 1) * $limit);
+$total_categories = count($categories);
+$total_pages = ceil($total_categories / $limit);
+$prev_page = $page <= 1 ? 1 : $page - 1;
+$next_page = $page >= $total_pages ? $total_pages : $page + 1;
+?>
+
 <main class="container">
   <h1 class="text-center alert alert-danger">List Category</h1>
 

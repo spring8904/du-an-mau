@@ -1,3 +1,20 @@
+<?php
+$limit = 12;
+$categories_id = isset($_POST['category_id'])
+  ? $_POST['category_id']
+  : 'all';
+$products = get_products(
+  $categories_id,
+  $search,
+  $limit,
+  ($page - 1) * $limit
+);
+$total_products = count($products);
+$total_pages = ceil($total_products / $limit);
+$prev_page = $page <= 1 ? 1 : $page - 1;
+$next_page = $page >= $total_pages ? $total_pages : $page + 1;
+?>
+
 <main class="container">
   <h1 class="text-center alert alert-danger">List Product</h1>
 

@@ -1,3 +1,16 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  insert_product(
+    $_POST['product_name'],
+    $_POST['product_price'],
+    $_POST['product_sale'],
+    $_POST['product_description'],
+    $_FILES['product_image'],
+    $_POST['category_id']
+  );
+}
+?>
+
 <main class="container">
   <h1 class="alert alert-danger text-center">Add New Product</h1>
   <form method="post" enctype="multipart/form-data">

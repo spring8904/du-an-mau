@@ -1,3 +1,25 @@
+<?php
+if (isset($_GET['id'])) {
+  $product = get_product_by_id($_GET['id']);
+  extract($product);
+} else {
+  header('location: ./?controller=product');
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  update_product(
+    $product_id,
+    $_POST['product_name'],
+    $_POST['product_price'],
+    $_POST['product_sale'],
+    $_POST['product_description'],
+    $_FILES['product_image'],
+    $_POST['category_id']
+  );
+  header('location: ./?controller=product');
+}
+?>
+
 <main class="container">
   <h1 class="alert alert-danger text-center">Edit Product</h1>
 
