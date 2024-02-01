@@ -42,9 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <option selected hidden value="">Choose...</option>
             <?php
             foreach ($all_categories as $category) {
-              extract($category)
             ?>
-              <option value="<?= $category_id ?>"><?= $category_name ?></option>
+              <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
             <?php
             }
             ?>

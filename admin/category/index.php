@@ -30,18 +30,18 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
     </thead>
     <tbody>
       <?php
-      foreach ($categories as $category) {
-        extract($category)
-      ?>
+      foreach ($categories as $category) { ?>
         <tr>
           <td class="text-center">
-            <input class="form-check-input mt-0" type="checkbox" value="<?= $category_id ?>">
+            <input class="form-check-input mt-0" type="checkbox" value="<?= $category['category_id'] ?>">
           </td>
-          <td><?= $category_id ?></td>
-          <td><?= $category_name ?></td>
+          <td><?= $category['category_id'] ?></td>
+          <td><?= $category['category_name'] ?></td>
           <td>
-            <a href="./?controller=category&action=edit&id=<?= $category_id ?>" class="btn btn-warning">Edit</a>
-            <a href="./?controller=category&action=delete&id=<?= $category_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?= $category_name ?>')">Delete</a>
+            <a href="./?controller=category&action=edit&id=<?= $category['category_id'] ?>" class="btn btn-warning">Edit</a>
+            <a href="./?controller=category&action=delete&id=<?= $category['category_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
+              Delete
+            </a>
           </td>
         </tr>
       <?php
@@ -52,7 +52,5 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
 
   <?php include '../components/group-btn.php' ?>
 
-  <div class="d-flex justify-content-center">
-    <?php include '../components/pagination.php' ?>
-  </div>
+  <?php include '../components/pagination.php' ?>
 </main>

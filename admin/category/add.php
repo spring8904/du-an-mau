@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <main class="container">
   <h1 class="alert alert-danger text-center">Add New Category</h1>
+
   <form style="margin: auto; max-width: 500px;" method="post">
     <div class="mb-3">
       <label for="id" class="form-label fs-3">Category id:</label>

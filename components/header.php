@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php if (isset($title)) echo "$title | " ?>Navia Shop</title>
+  <title><?php if (isset($title_web)) echo "$title_web | " ?>Navia Shop</title>
   <link rel="shortcut icon" href="assets/logo/logo-pink.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -28,6 +28,22 @@
             <li class="nav-item">
               <a class="nav-link" href="?controller=product">Product</a>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Category
+              </a>
+              <ul class="dropdown-menu">
+                <?php
+                foreach (get_categories() as $category) {
+                ?>
+                  <li>
+                    <a class="dropdown-item" href="?controller=product&category_id=<?= $category['category_id'] ?>">
+                      <?= $category['category_name'] ?>
+                    </a>
+                  </li>
+                <?php } ?>
+              </ul>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="?controller=about">About</a>
             </li>
@@ -35,7 +51,7 @@
               <a class="nav-link" href="?controller=contact">Contact</a>
             </li>
           </ul>
-          <a class="ms-2 btn btn-success" href="./admin">Login</a>
+          <a class="ms-2 btn btn-success" href="?controller=login">Login</a>
         </div>
       </div>
     </nav>

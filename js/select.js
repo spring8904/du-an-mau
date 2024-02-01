@@ -16,17 +16,20 @@ const deselectAll = () => {
     checkbox.checked = false
   })
 }
-
-inputSelectAll.onchange = () => {
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = inputSelectAll.checked
-  })
+if (inputSelectAll) {
+  inputSelectAll.onchange = () => {
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = inputSelectAll.checked
+    })
+  }
 }
 
-checkboxes.forEach((checkbox) => {
-  checkbox.onchange = () => {
-    inputSelectAll.checked = [...checkboxes].every(
-      (checkbox) => checkbox.checked,
-    )
-  }
-})
+if (checkboxes) {
+  checkboxes.forEach((checkbox) => {
+    checkbox.onchange = () => {
+      inputSelectAll.checked = [...checkboxes].every(
+        (checkbox) => checkbox.checked,
+      )
+    }
+  })
+}

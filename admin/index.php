@@ -14,19 +14,19 @@ switch ($controller) {
   case 'category':
     switch ($action) {
       case 'add':
-        $title = 'Add Category';
+        $title_web = 'Add Category';
         include 'components/header.php';
         include 'category/add.php';
         break;
       case 'edit':
-        $title = 'Edit Category';
+        $title_web = 'Edit Category';
         include 'components/header.php';
         include 'category/edit.php';
         break;
       case 'delete':
         delete_category($id);
       default:
-        $title = 'Category';
+        $title_web = 'Category';
         include 'components/header.php';
         include 'category/index.php';
         break;
@@ -36,19 +36,19 @@ switch ($controller) {
   case 'product':
     switch ($action) {
       case 'add':
-        $title = 'Add Product';
+        $title_web = 'Add Product';
         include 'components/header.php';
         include 'product/add.php';
         break;
       case 'edit':
-        $title = 'Edit Product';
+        $title_web = 'Edit Product';
         include 'components/header.php';
         include 'product/edit.php';
         break;
       case 'delete':
         delete_product($id);
       default:
-        $title = 'Product';
+        $title_web = 'Product';
         include 'components/header.php';
         include 'product/index.php';
         break;
@@ -56,7 +56,7 @@ switch ($controller) {
     break;
 
   default:
-    $title = 'Admin';
+    $title_web = 'Admin';
     include 'components/header.php';
     include 'home.php';
     break;

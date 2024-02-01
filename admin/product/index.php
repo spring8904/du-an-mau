@@ -38,9 +38,8 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
       <option value="all">All Products</option>
       <?php
       foreach ($all_categories as $category) {
-        extract($category)
       ?>
-        <option value="<?= $category_id ?>"><?= $category_name ?></option>
+        <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
       <?php
       }
       ?>
@@ -68,21 +67,20 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
     <tbody>
       <?php
       foreach ($products as $product) {
-        extract($product);
       ?>
         <tr>
           <td class="text-center">
-            <input class="form-check-input mt-0" type="checkbox" value="<?= $product_id ?>">
+            <input class="form-check-input mt-0" type="checkbox" value="<?= $product['product_id'] ?>">
           </td>
-          <td><?= $product_id ?></td>
-          <td><img width="100px" height="100px" src="../uploads/<?= $product_image ?>" alt="<?= $product_name ?>"></td>
-          <td><?= $product_name ?></td>
-          <td><?= $product_price ?></td>
-          <td><?= $product_sale ?></td>
-          <td><?= $category_name ?></td>
+          <td><?= $product['product_id'] ?></td>
+          <td><img width="100px" height="100px" src="../uploads/<?= $product['product_image'] ?>" alt="<?= $product['product_name'] ?>"></td>
+          <td><?= $product['product_name'] ?></td>
+          <td><?= $product['product_price'] ?></td>
+          <td><?= $product['product_sale'] ?></td>
+          <td><?= $product['category_name'] ?></td>
           <td>
-            <a href="./?controller=product&action=edit&id=<?= $product_id ?>" class="btn btn-warning">Edit</a>
-            <a href="./?controller=product&action=delete&id=<?= $product_id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product_name ?>')">Delete</a>
+            <a href="./?controller=product&action=edit&id=<?= $product['product_id'] ?>" class="btn btn-warning">Edit</a>
+            <a href="./?controller=product&action=delete&id=<?= $product['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product['product_name'] ?>')">Delete</a>
           </td>
         </tr>
       <?php
@@ -93,7 +91,5 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
 
   <?php include '../components/group-btn.php' ?>
 
-  <div class="d-flex justify-content-center">
-    <?php include '../components/pagination.php' ?>
-  </div>
+  <?php include '../components/pagination.php' ?>
 </main>
