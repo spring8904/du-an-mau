@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <main class="container">
   <h1 class="alert alert-danger text-center">Add New Product</h1>
+
   <form method="post" enctype="multipart/form-data">
     <div class="d-flex row">
       <div class="col-md">
@@ -64,9 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="text-center"><img id="output" width="200px" height="200px" /></div>
-
       </div>
-
     </div>
 
     <div class="d-flex justify-content-between mt-3">

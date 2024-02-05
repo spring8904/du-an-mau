@@ -7,6 +7,7 @@
   <title><?php if (isset($title_web)) echo "$title_web | " ?>Navia Shop</title>
   <link rel="shortcut icon" href="assets/logo/logo-pink.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontawesome-6-pro@6.4.0/css/all.min.css" integrity="sha256-R6pa/zpbhz9IjJIAXKP/0Kk53cRwfsjdik4Ojf9lOrQ=" crossorigin="anonymous">
 </head>
 
 <body class="bg-light">
@@ -34,8 +35,15 @@
               </a>
               <ul class="dropdown-menu">
                 <?php
-                foreach (get_categories() as $category) {
+                foreach (get_categories() as $key => $category) {
+                  if ($key != 0) {
                 ?>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                  <?php
+                  }
+                  ?>
                   <li>
                     <a class="dropdown-item" href="?controller=product&category_id=<?= $category['category_id'] ?>">
                       <?= $category['category_name'] ?>

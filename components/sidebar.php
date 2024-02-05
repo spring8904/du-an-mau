@@ -1,8 +1,9 @@
-<aside class="col col-lg-3 col-0">
+<aside class="col col-lg-3 mt-lg-0 mt-3">
   <div class="card w-100">
     <div class="card-header">
       Login
     </div>
+
     <form method="post" class="p-3">
       <div class="mb-3">
         <label for="username" class="form-label">User name:</label>

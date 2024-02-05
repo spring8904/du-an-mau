@@ -9,7 +9,7 @@ $imageFiles = array_filter($files, function ($file) {
 $imageFiles = array_values($imageFiles);
 ?>
 
-<section id="banner" class="carousel slide rounded-1 overflow-hidden" data-bs-ride="carousel">
+<section id="banner" class="carousel slide rounded-1 overflow-hidden mb-3" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <?php foreach ($imageFiles as $index => $image) { ?>
       <button type="button" data-bs-target="#banner" data-bs-slide-to="<?= $index ?>" <?= $index == 0 ? 'class="active" aria-current="true"' : '' ?>></button>

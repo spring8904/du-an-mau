@@ -79,8 +79,14 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
           <td><?= $product['product_sale'] ?></td>
           <td><?= $product['category_name'] ?></td>
           <td>
-            <a href="./?controller=product&action=edit&id=<?= $product['product_id'] ?>" class="btn btn-warning">Edit</a>
-            <a href="./?controller=product&action=delete&id=<?= $product['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product['product_name'] ?>')">Delete</a>
+            <a href="./?controller=product&action=edit&id=<?= $product['product_id'] ?>" class="btn btn-warning">
+              <i class="fa-solid fa-pen-to-square"></i>
+              Edit
+            </a>
+            <a href="./?controller=product&action=delete&id=<?= $product['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product['product_name'] ?>')">
+              <i class="fa-solid fa-trash"></i>
+              Delete
+            </a>
           </td>
         </tr>
       <?php

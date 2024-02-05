@@ -25,23 +25,37 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
         </th>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <?php
-      foreach ($categories as $category) { ?>
+      foreach ($categories as $category) {
+        $quantity =  count(get_products($category['category_id'])); ?>
         <tr>
           <td class="text-center">
             <input class="form-check-input mt-0" type="checkbox" value="<?= $category['category_id'] ?>">
           </td>
           <td><?= $category['category_id'] ?></td>
           <td><?= $category['category_name'] ?></td>
+          <td><?= $quantity ?></td>
           <td>
-            <a href="./?controller=category&action=edit&id=<?= $category['category_id'] ?>" class="btn btn-warning">Edit</a>
-            <a href="./?controller=category&action=delete&id=<?= $category['category_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
-              Delete
+            <a href="./?controller=category&action=edit&id=<?= $category['category_id'] ?>" class="btn btn-warning">
+              <i class="fa-solid fa-pen-to-square"></i>
+              Edit
             </a>
+            <?php if ($quantity == 0) { ?>
+              <a href="./?controller=category&action=delete&id=<?= $category['category_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
+                <i class="fa-solid fa-trash"></i>
+                Delete
+              </a>
+            <?php } else { ?>
+              <button class="btn btn-danger" disabled>
+                <i class="fa-solid fa-trash"></i>
+                Delete
+              </button>
+            <?php } ?>
           </td>
         </tr>
       <?php
