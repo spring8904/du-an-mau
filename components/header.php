@@ -59,7 +59,16 @@
               <a class="nav-link" href="?controller=contact">Contact</a>
             </li>
           </ul>
-          <a class="ms-2 btn btn-success" href="?controller=login">Login</a>
+          <div class="d-flex align-items-center justify-content-between">
+            <form class="d-flex" method="get" role="search">
+              <input type="hidden" name="controller" value="product">
+              <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">
+                <i class="fa-regular fa-magnifying-glass"></i>
+              </button>
+            </form>
+            <a class="ms-2 btn btn-success" href="?controller=login">Login</a>
+          </div>
         </div>
       </div>
     </nav>

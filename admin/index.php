@@ -7,7 +7,7 @@ $controller = isset($_GET['controller']) ? $_GET['controller'] : '';
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$search = isset($_POST['search']) ? $_POST['search'] : '';
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 $all_categories = get_categories();
 
 switch ($controller) {

@@ -1,7 +1,7 @@
 <?php
 $limit = 8;
-$category_id = isset($_POST['category_id'])
-  ? $_POST['category_id']
+$category_id = isset($_GET['category_id'])
+  ? $_GET['category_id']
   : '';
 
 $products = get_products(
@@ -27,15 +27,16 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
 <main class="container">
   <h1 class="text-center alert alert-danger">List Product</h1>
 
-  <form class="d-flex gap-2" method="post">
-    <input class="form-control" type="search" placeholder="Product name" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
+  <form class="d-flex gap-2" method="get">
+    <input type="hidden" name="controller" value="product">
+    <input class="form-control" type="search" placeholder="Product name" name="search" value="<?= $search ?>">
     <select class="form-select" id="category-id" name="category_id">
-      <?php if (isset($_POST['category_id']) && $_POST['category_id'] != '') { ?>
-        <option value="<?= $_POST['category_id'] ?>" hidden selected>
-          <?= get_category_by_id($_POST['category_id'])['category_name'] ?>
+      <?php if (isset($_GET['category_id']) && $_GET['category_id'] != '') { ?>
+        <option value="<?= $_GET['category_id'] ?>" hidden selected>
+          <?= get_category_by_id($_GET['category_id'])['category_name'] ?>
         </option>
       <?php } ?>
-      <option value="all">All Products</option>
+      <option value="">All Products</option>
       <?php
       foreach ($all_categories as $category) {
       ?>

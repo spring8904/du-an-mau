@@ -13,10 +13,8 @@ switch ($controller) {
     $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : '';
 
     if ($category_id == '') {
-      $products = get_products();
       $title_web = 'Product';
     } else {
-      $products = get_products($category_id);
       $category_name = get_category_by_id($category_id)['category_name'];
       $title_web = $category_name;
     }

@@ -1,5 +1,19 @@
 <?php
-$title = isset($_GET['category_id']) ? $category_name : 'All Products';
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+if ($category_id == '') {
+  if ($search != '') {
+    $products = get_products('', $search);
+    $title = 'Search: ' . $search;
+  } else {
+    $products = get_products();
+    $title =  'All Products';
+  }
+} else {
+  $products = get_products($category_id);
+  $title = $category_name;
+}
+
 $limit = 20;
 $total_products = count($products);
 $total_pages = ceil($total_products / $limit);

@@ -10,8 +10,9 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
 <main class="container">
   <h1 class="text-center alert alert-danger">List Category</h1>
 
-  <form class="d-flex" method="post">
-    <input class="form-control me-2" type="search" placeholder="Category name" name="search" value="<?php if (isset($_POST['search'])) echo $_POST['search'] ?>">
+  <form class="d-flex" method="get">
+    <input type="hidden" name="controller" value="category">
+    <input class="form-control me-2" type="search" placeholder="Category name" name="search" value="<?= $search ?>">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 
