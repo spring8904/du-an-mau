@@ -1,21 +1,25 @@
 <?php
 $search = isset($_GET['search']) ? $_GET['search'] : '';
+$limit = 12;
 
 if ($category_id == '') {
   if ($search != '') {
-    $products = get_products('', $search);
+    $all_products = get_products('', $search);
+    $products = get_products('', $search, $limit, ($page - 1) * $limit);
     $title = 'Search: ' . $search;
   } else {
-    $products = get_products();
+    $all_products = get_products();
+    $products = get_products('', '', $limit, ($page - 1) * $limit);
     $title =  'All Products';
   }
 } else {
-  $products = get_products($category_id);
+  $all_products = get_products($category_id);
+  $products = get_products($category_id, '', $limit, ($page - 1) * $limit);
   $title = $category_name;
 }
 
-$limit = 20;
-$total_products = count($products);
+
+$total_products = count($all_products);
 $total_pages = ceil($total_products / $limit);
 
 $prev_page = $page <= 1 ? 1 : $page - 1;

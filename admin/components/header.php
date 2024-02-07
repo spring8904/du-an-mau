@@ -33,7 +33,7 @@
               <a class="nav-link" href="?controller=product">Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?controller=costumer">Costumer</a>
+              <a class="nav-link" href="?controller=customer">Customer</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="?controller=comment">Comment</a>

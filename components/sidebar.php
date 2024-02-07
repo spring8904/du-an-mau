@@ -22,7 +22,7 @@
       <button class="mt-2 btn btn-outline-primary w-100" type="submit">Login</button>
       <ul class="mt-2">
         <li>
-          <a href="#">Register</a>
+          <a href="?controller=register">Register</a>
         </li>
         <li>
           <a href="#">Forgot Password</a>

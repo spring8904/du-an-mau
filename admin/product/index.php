@@ -11,10 +11,10 @@ $products = get_products(
   ($page - 1) * $limit
 );
 
-if ($category_id == '') {
-  $all_products = get_products();
-} else {
+if ($category_id != '') {
   $all_products = get_products($category_id);
+} else {
+  $all_products = get_products();
 }
 
 $total_products = count($all_products);
@@ -80,11 +80,11 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
           <td><?= $product['product_sale'] ?></td>
           <td><?= $product['category_name'] ?></td>
           <td>
-            <a href="./?controller=product&action=edit&id=<?= $product['product_id'] ?>" class="btn btn-warning">
+            <a href="./?controller=product&action=edit&product_id=<?= $product['product_id'] ?>" class="btn btn-warning">
               <i class="fa-solid fa-pen-to-square"></i>
               Edit
             </a>
-            <a href="./?controller=product&action=delete&id=<?= $product['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product['product_name'] ?>')">
+            <a href="./?controller=product&action=delete&product_id=<?= $product['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete product <?= $product['product_name'] ?>')">
               <i class="fa-solid fa-trash"></i>
               Delete
             </a>

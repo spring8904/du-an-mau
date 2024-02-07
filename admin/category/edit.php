@@ -1,12 +1,12 @@
 <?php
-if (isset($_GET['id'])) {
-  $category = get_category_by_id($_GET['id']);
+if (isset($_GET['category_id'])) {
+  $category = get_category_by_id($_GET['category_id']);
 } else {
   header('location: ./?controller=category');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  update_category($id, $_POST['category_name']);
+  update_category($category['category_id'], $_POST['category_name']);
   header('location: ./?controller=category');
 }
 ?>
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="text" class="form-control" id="name" name="category_name" value="<?= $category['category_name']; ?>" required>
     </div>
     <div class="d-flex justify-content-between">
-      <button type="submit" class="btn btn-waring">Save</button>
+      <button type="submit" class="btn btn-warning">Save</button>
       <a href="./?controller=category" class="btn btn-secondary">Go back</a>
     </div>
   </form>

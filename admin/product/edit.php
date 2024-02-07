@@ -1,6 +1,6 @@
 <?php
-if (isset($_GET['id'])) {
-  $product = get_product_by_id($_GET['id']);
+if (isset($_GET['product_id'])) {
+  $product = get_product_by_id($_GET['product_id']);
 } else {
   header('location: ./?controller=product');
 }

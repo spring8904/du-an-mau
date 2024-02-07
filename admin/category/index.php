@@ -42,21 +42,14 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
           <td><?= $category['category_name'] ?></td>
           <td><?= $quantity ?></td>
           <td>
-            <a href="./?controller=category&action=edit&id=<?= $category['category_id'] ?>" class="btn btn-warning">
+            <a href="./?controller=category&action=edit&category_id=<?= $category['category_id'] ?>" class="btn btn-warning mb-2">
               <i class="fa-solid fa-pen-to-square"></i>
               Edit
             </a>
-            <?php if ($quantity == 0) { ?>
-              <a href="./?controller=category&action=delete&id=<?= $category['category_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
-                <i class="fa-solid fa-trash"></i>
-                Delete
-              </a>
-            <?php } else { ?>
-              <button class="btn btn-danger" disabled>
-                <i class="fa-solid fa-trash"></i>
-                Delete
-              </button>
-            <?php } ?>
+            <a href="./?controller=category&action=delete&category_id=<?= $category['category_id'] ?>" class="btn btn-danger mb-2 <?= $quantity != 0 ? 'disabled' : '' ?>  " onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
+              <i class="fa-solid fa-trash"></i>
+              Delete
+            </a>
           </td>
         </tr>
       <?php

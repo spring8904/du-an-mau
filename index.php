@@ -2,6 +2,8 @@
 require 'models/pdo.php';
 require 'models/category.php';
 require 'models/product.php';
+require 'models/customer.php';
+require 'models/comment.php';
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -30,12 +32,6 @@ switch ($controller) {
 
     include 'components/header.php';
     include 'pages/product-detail.php';
-    break;
-
-  case 'about':
-    $title_web = 'About';
-    include 'components/header.php';
-    include 'pages/about.php';
     break;
 
   case 'contact':

@@ -16,15 +16,14 @@ const deselectAll = () => {
     checkbox.checked = false
   })
 }
-if (inputSelectAll) {
+
+if (checkboxes && inputSelectAll) {
   inputSelectAll.onchange = () => {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = inputSelectAll.checked
     })
   }
-}
 
-if (checkboxes) {
   checkboxes.forEach((checkbox) => {
     checkbox.onchange = () => {
       inputSelectAll.checked = [...checkboxes].every(

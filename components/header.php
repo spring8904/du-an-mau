@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-light">
-  <header>
+  <header class="mb-4">
     <nav class="navbar navbar-expand-lg bg-body-tertiary container">
       <div class="container-fluid">
         <a class="navbar-brand" href=".">
@@ -51,9 +51,6 @@
                   </li>
                 <?php } ?>
               </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="?controller=about">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="?controller=contact">Contact</a>

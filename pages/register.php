@@ -12,7 +12,7 @@
     <form method="post" class="p-3">
       <div class="mb-3">
         <label for="username" class="form-label">User name:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+        <input type="text" class="form-control" id="username" name="username" required autofocus>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password:</label>
@@ -21,6 +21,14 @@
       <div class="mb-3">
         <label for="confirm-password" class="form-label">Confirm Password:</label>
         <input type="password" class="form-control" id="confirm-password" name="confirm_password" required>
+      </div>
+      <div class="mb-3">
+        <label for="full-name" class="form-label">Full Name:</label>
+        <input type="text" class="form-control" id="full-name" name="full_name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" name="agree" id="agree">

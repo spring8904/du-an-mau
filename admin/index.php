@@ -2,13 +2,17 @@
 require '../models/pdo.php';
 require '../models/category.php';
 require '../models/product.php';
+require '../models/customer.php';
+require '../models/comment.php';
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] : '';
 $action = isset($_GET['action']) ? $_GET['action'] : '';
-$id = isset($_GET['id']) ? $_GET['id'] : '';
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $all_categories = get_categories();
+$category_id = isset($_GET['category_id']) ? $_GET['category_id'] : '';
+$product_id = isset($_GET['product_id']) ? $_GET['product_id'] : '';
+$comment_id = isset($_GET['comment_id']) ? $_GET['comment_id'] : '';
 
 switch ($controller) {
   case 'category':
@@ -24,7 +28,7 @@ switch ($controller) {
         include 'category/edit.php';
         break;
       case 'delete':
-        delete_category($id);
+        delete_category($category_id);
       default:
         $title_web = 'Category';
         include 'components/header.php';
@@ -46,11 +50,51 @@ switch ($controller) {
         include 'product/edit.php';
         break;
       case 'delete':
-        delete_product($id);
+        delete_product($product_id);
       default:
         $title_web = 'Product';
         include 'components/header.php';
         include 'product/index.php';
+        break;
+    }
+    break;
+
+  case 'customer':
+    switch ($action) {
+      case 'edit':
+        $title_web = 'Edit Customer';
+        include 'components/header.php';
+        include 'customer/edit.php';
+        break;
+      case 'delete':
+        delete_customer($id);
+      default:
+        $title_web = 'Customer';
+        include 'components/header.php';
+        include 'customer/index.php';
+        break;
+    }
+    break;
+
+  case 'comment':
+    $title_web = 'Comment';
+    include 'components/header.php';
+    include 'comment/index.php';
+    break;
+
+  case 'comment_detail':
+    switch ($action) {
+      case 'edit':
+        $title_web = 'Edit Comment';
+        include 'components/header.php';
+        include 'comment/edit.php';
+        break;
+      case 'delete':
+        delete_comment($comment_id);
+      default:
+        $title_web = 'Comment';
+        include 'components/header.php';
+        include 'comment/detail.php';
         break;
     }
     break;

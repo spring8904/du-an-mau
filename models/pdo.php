@@ -56,3 +56,27 @@ function pdo_query_one($sql)
     unset($conn);
   }
 }
+
+function upload_file($file)
+{
+  $target_dir = "../uploads/";
+  $filename = explode('.', $file["name"]);
+  $ext = end($filename);
+  $file["name"] = uniqid() . '.' . $ext;
+  $target_file = $target_dir . basename($file["name"]);
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+  $allowedTypes = array('jpg', 'png', 'jpeg', 'webp');
+
+  if (!in_array($imageFileType, $allowedTypes)) {
+    echo "Type is not allowed";
+  } elseif (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+  } elseif ($file["size"] > 5000000) {
+    echo "Sorry, your file is too large.";
+  } elseif (move_uploaded_file($file["tmp_name"], $target_file)) {
+    // echo "The file " . basename($file["name"]) . " has been uploaded.";
+    return $file["name"];
+  }
+
+  return '';
+}
