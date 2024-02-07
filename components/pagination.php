@@ -9,7 +9,7 @@
           <a class="page-link" href="?controller=<?= $controller ?>&page=<?= $i ?>"><?= $i ?></a>
         </li>
       <?php } ?>
-      <li class="page-item <?= $next_page == $page ? 'disabled' : '' ?>">
+      <li class="page-item <?= $next_page == $page || $next_page == 0 ? 'disabled' : '' ?>">
         <a class="page-link" href="?controller=<?= $controller ?>&page=<?= $next_page ?>">Next</a>
       </li>
     </ul>

@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-light">
-  <header class="mb-4">
+  <header class="mb-4 pt-3">
     <nav class="navbar navbar-expand-lg bg-body-tertiary container">
       <div class="container-fluid">
         <a class="navbar-brand" href=".">
@@ -64,7 +64,40 @@
                 <i class="fa-regular fa-magnifying-glass"></i>
               </button>
             </form>
-            <a class="ms-2 btn btn-success" href="?controller=login">Login</a>
+            <a href="?controller=order" class="mx-3 btn btn-outline-primary position-relative">
+              <i class="fa-light fa-cart-shopping"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </a>
+            <?php
+            if (isset($_SESSION['customer'])) {
+            ?>
+              <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?= $_SESSION['customer']['customer_username'] ?>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <?php
+                  if ($_SESSION['customer']['customer_role']) {
+                  ?>
+                    <li><a class="dropdown-item" href="./admin">Admin page</a></li>
+                  <?php
+                  }
+                  ?>
+                  <li><a class="dropdown-item" href="?controller=profile">Profile</a></li>
+                  <li><a class="dropdown-item" href="?controller=order">Order</a></li>
+                  <li><a class="dropdown-item" href="?controller=logout">Logout</a></li>
+                </ul>
+              </div>
+            <?php
+            } else {
+            ?>
+              <a class="btn btn-success" href="?controller=login">Login</a>
+            <?php
+            }
+            ?>
           </div>
         </div>
       </div>

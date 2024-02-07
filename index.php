@@ -1,12 +1,17 @@
 <?php
+ob_start();
 require 'models/pdo.php';
 require 'models/category.php';
 require 'models/product.php';
 require 'models/customer.php';
 require 'models/comment.php';
 
+session_start();
+if (isset($_COOKIE['customer_id'])) {
+  $_SESSION['customer'] = get_customer_by_id($_COOKIE['customer_id']);
+}
+
 $controller = isset($_GET['controller']) ? $_GET['controller'] : '';
-$id = isset($_GET['id']) ? $_GET['id'] : '';
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : '';
 
@@ -46,6 +51,12 @@ switch ($controller) {
     include 'pages/login.php';
     break;
 
+  case 'logout':
+    session_destroy();
+    setcookie('customer_id', '', time() - 3600);
+    header('location: .');
+    break;
+
   case 'register':
     $title_web = 'Register';
     include 'components/header.php';
@@ -60,3 +71,4 @@ switch ($controller) {
 }
 
 include 'components/footer.php';
+ob_end_flush();

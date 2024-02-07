@@ -38,6 +38,7 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
         <th scope="col">Username</th>
         <th scope="col">Full Name</th>
         <th scope="col">Email</th>
+        <th scope="col">Role</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -56,15 +57,18 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
           <td><?= $customer['customer_username'] ?></td>
           <td><?= $customer['customer_full_name'] ?></td>
           <td><?= $customer['customer_email'] ?></td>
+          <td><?= $customer['customer_role'] ? 'admin' : 'customer' ?></td>
           <td>
-            <a href="./?controller=customer&action=edit&id=<?= $customer['customer_id'] ?>" class="btn btn-warning mb-2">
-              <i class="fa-solid fa-pen-to-square"></i>
-              Edit
-            </a>
-            <a href="./?controller=customer&action=delete&id=<?= $customer['customer_id'] ?>" class="btn btn-danger mb-2" onclick="return confirm('Are you sure you want to delete customer <?= $customer['customer_username'] ?>')">
-              <i class="fa-solid fa-trash"></i>
-              Delete
-            </a>
+            <?php if ($customer['customer_role'] == 0) { ?>
+              <a href="./?controller=customer&action=edit&customer_id=<?= $customer['customer_id'] ?>" class="btn btn-warning mb-2">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Edit
+              </a>
+              <a href="./?controller=customer&action=delete&customer_id=<?= $customer['customer_id'] ?>" class="btn btn-danger mb-2" onclick="return confirm('Are you sure you want to delete customer <?= $customer['customer_username'] ?>')">
+                <i class="fa-solid fa-trash"></i>
+                Delete
+              </a>
+            <?php } ?>
           </td>
         </tr>
       <?php

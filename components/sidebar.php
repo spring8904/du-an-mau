@@ -1,35 +1,67 @@
 <aside class="col col-lg-3 mt-lg-0 mt-3">
-  <div class="card w-100">
-    <div class="card-header">
-      Login
-    </div>
-
-    <form method="post" class="p-3">
-      <div class="mb-3">
-        <label for="username" class="form-label">User name:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+  <?php
+  if (isset($_SESSION['customer'])) {
+  ?>
+    <div class="card w-100">
+      <div class="card-header">
+        Welcome <span class="fw-semibold text-decoration-underline"><?= $_SESSION['customer']['customer_username'] ?></span>!
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember-me">
-        <label class="form-check-label" for="remember-me">
-          Remember me
-        </label>
-      </div>
-      <button class="mt-2 btn btn-outline-primary w-100" type="submit">Login</button>
-      <ul class="mt-2">
-        <li>
-          <a href="?controller=register">Register</a>
+      <ul class="list-group list-group-flush">
+        <?php
+        if ($_SESSION['customer']['customer_role']) {
+        ?>
+          <li class="list-group-item">
+            <a href="./admin">Admin page</a>
+          </li>
+        <?php
+        }
+        ?>
+        <li class="list-group-item">
+          <a href="?controller=profile">Profile</a>
         </li>
-        <li>
-          <a href="#">Forgot Password</a>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="?controller=order">Order</a>
+          <span class="badge bg-danger rounded-pill">0</span>
         </li>
       </ul>
-    </form>
-  </div>
+    </div>
+  <?php
+  } else {
+  ?>
+    <div class="card w-100">
+      <div class="card-header">
+        Login
+      </div>
+
+      <form method="post" class="p-3" action="?controller=login">
+        <div class="mb-3">
+          <label for="username" class="form-label">User name:</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="1" name="remember_me" id="remember-me">
+          <label class="form-check-label" for="remember-me">
+            Remember me
+          </label>
+        </div>
+        <button class="mt-2 btn btn-outline-primary w-100" type="submit">Login</button>
+        <ul class="mt-2">
+          <li>
+            <a href="?controller=register">Register</a>
+          </li>
+          <li>
+            <a href="#">Forgot Password</a>
+          </li>
+        </ul>
+      </form>
+    </div>
+  <?php
+  }
+  ?>
 
   <div class="card w-100 mt-3">
     <div class="card-header">

@@ -1,3 +1,40 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $confirm_password = $_POST['confirm_password'];
+  $full_name = $_POST['full_name'];
+  $email = $_POST['email'];
+  $valid = true;
+
+  if (empty($username) || empty($password) || empty($confirm_password)) {
+    echo "<script>alert('Username, password and confirm password are required')</script>";
+    $valid = false;
+  }
+
+  if (strlen($password) < 8) {
+    echo "<script>alert('Username must be at least 8 characters')</script>";
+    $valid = false;
+  }
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
+    echo "<script>alert('Email is not valid')</script>";
+    $valid = false;
+  }
+
+  if ($password != $confirm_password) {
+    echo "<script>alert('Password and confirm password do not match')</script>";
+    $valid = false;
+  }
+
+  if ($valid) {
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    insert_customer($username, $password, $full_name, $email);
+    header('location: ./?controller=login');
+  }
+}
+?>
+
 <main class="container">
   <h1 class="alert alert-danger text-center">REGISTER</h1>
 
@@ -11,24 +48,24 @@
   <div class="card mx-auto" style="max-width: 360px;">
     <form method="post" class="p-3">
       <div class="mb-3">
-        <label for="username" class="form-label">User name:</label>
+        <label for="username" class="form-label">Username:<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="username" name="username" required autofocus>
       </div>
       <div class="mb-3">
-        <label for="password" class="form-label">Password:</label>
+        <label for="password" class="form-label">Password:<span class="text-danger">*</span></label>
         <input type="password" class="form-control" id="password" name="password" required>
       </div>
       <div class="mb-3">
-        <label for="confirm-password" class="form-label">Confirm Password:</label>
+        <label for="confirm-password" class="form-label">Confirm Password:<span class="text-danger">*</span></label>
         <input type="password" class="form-control" id="confirm-password" name="confirm_password" required>
       </div>
       <div class="mb-3">
         <label for="full-name" class="form-label">Full Name:</label>
-        <input type="text" class="form-control" id="full-name" name="full_name" required>
+        <input type="text" class="form-control" id="full-name" name="full_name">
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <input type="email" class="form-control" id="email" name="email">
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" name="agree" id="agree">

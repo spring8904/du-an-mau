@@ -1,13 +1,15 @@
 <?php
-function insert_customer($username, $password, $full_name, $avatar, $email)
+function insert_customer($username, $password, $full_name = '', $email = '', $avatar = '')
 {
-  $avatar = upload_file($avatar);
-
   if ($avatar != '') {
+    $avatar = upload_file($avatar);
     $sql = "INSERT INTO customers(customer_username, customer_password, customer_full_name, customer_avatar, customer_email) 
             VALUES ('$username', '$password', '$full_name', '$avatar', '$email')";
-    pdo_execute($sql);
+  } else {
+    $sql = "INSERT INTO customers(customer_username, customer_password, customer_full_name, customer_email) 
+            VALUES ('$username', '$password', '$full_name', '$email')";
   }
+  pdo_execute($sql);
 }
 
 function update_customer($id, $username, $password, $full_name, $avatar, $email)
@@ -53,5 +55,11 @@ function get_customers($search = '', $limit = '', $offset = '')
 function get_customer_by_id($id)
 {
   $sql = "SELECT * FROM customers WHERE customer_id = $id";
+  return pdo_query_one($sql);
+}
+
+function get_customer_by_username($username)
+{
+  $sql = "SELECT * FROM customers WHERE customer_username = '$username'";
   return pdo_query_one($sql);
 }

@@ -46,7 +46,7 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
               <i class="fa-solid fa-pen-to-square"></i>
               Edit
             </a>
-            <a href="./?controller=category&action=delete&category_id=<?= $category['category_id'] ?>" class="btn btn-danger mb-2 <?= $quantity != 0 ? 'disabled' : '' ?>  " onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
+            <a href="./?controller=category&action=delete&category_id=<?= $category['category_id'] ?>" class="btn btn-danger mb-2 <?= $quantity != 0 ? 'disabled' : '' ?>" onclick="return confirm('Are you sure you want to delete category <?= $category['category_name'] ?>')">
               <i class="fa-solid fa-trash"></i>
               Delete
             </a>

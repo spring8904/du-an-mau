@@ -39,7 +39,7 @@
               <a class="nav-link" href="?controller=comment">Comment</a>
             </li>
           </ul>
-          <a class="ms-2 btn btn-success" href="../">Logout</a>
+          <a class="ms-2 btn btn-success" href="../">Home</a>
 
         </div>
       </div>

@@ -1,9 +1,19 @@
 <?php
+ob_start();
 require '../models/pdo.php';
 require '../models/category.php';
 require '../models/product.php';
 require '../models/customer.php';
 require '../models/comment.php';
+
+session_start();
+if (isset($_COOKIE['customer_id'])) {
+  $_SESSION['customer'] = get_customer_by_id($_COOKIE['customer_id']);
+}
+
+if (!isset($_SESSION['customer']) || $_SESSION['customer']['customer_role'] == 0) {
+  header('location: ../');
+}
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] : '';
 $action = isset($_GET['action']) ? $_GET['action'] : '';
@@ -12,6 +22,7 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 $all_categories = get_categories();
 $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : '';
 $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : '';
+$customer_id = isset($_GET['customer_id']) ? $_GET['customer_id'] : '';
 $comment_id = isset($_GET['comment_id']) ? $_GET['comment_id'] : '';
 
 switch ($controller) {
@@ -67,7 +78,7 @@ switch ($controller) {
         include 'customer/edit.php';
         break;
       case 'delete':
-        delete_customer($id);
+        delete_customer($customer_id);
       default:
         $title_web = 'Customer';
         include 'components/header.php';
@@ -107,3 +118,5 @@ switch ($controller) {
 }
 
 include 'components/footer.php';
+
+ob_end_flush();

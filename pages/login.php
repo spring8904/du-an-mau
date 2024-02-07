@@ -1,3 +1,26 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $remember_me = isset($_POST['remember_me']) ? 1 : 0;
+
+  $customer = get_customer_by_username($username);
+  if ($customer && password_verify($password, $customer['customer_password'])) {
+    $_SESSION['customer'] = $customer;
+    if ($remember_me) {
+      setcookie('customer_id', $customer['customer_id'], time() + 3600 * 24 * 30);
+    }
+
+    if ($customer['customer_role'] == 1)
+      header('location: ./admin');
+    else
+      header('location: ./');
+  } else {
+    echo "<script>alert('Login failed!');</script>";
+  }
+}
+?>
+
 <main class="container">
   <h1 class="alert alert-danger text-center">LOGIN</h1>
 
@@ -11,7 +34,7 @@
   <div class="card mx-auto" style="max-width: 360px;">
     <form method="post" class="p-3">
       <div class="mb-3">
-        <label for="username" class="form-label">User name:</label>
+        <label for="username" class="form-label">Username:</label>
         <input type="text" class="form-control" id="username" name="username" required autofocus>
       </div>
       <div class="mb-3">
@@ -19,7 +42,7 @@
         <input type="password" class="form-control" id="password" name="password" required>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember-me">
+        <input class="form-check-input" type="checkbox" value="1" name="remember_me" id="remember-me">
         <label class="form-check-label" for="remember-me">
           Remember me
         </label>
