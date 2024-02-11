@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="text" class="form-control" id="name" name="category_name" value="<?= $category['category_name']; ?>" required>
     </div>
     <div class="d-flex justify-content-between">
-      <button type="submit" class="btn btn-warning">Save</button>
       <a href="./?controller=category" class="btn btn-secondary">Go back</a>
+      <button type="submit" class="btn btn-warning">Save</button>
     </div>
   </form>
 </main>

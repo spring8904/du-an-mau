@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       <div class="card mt-2">
         <div class="d-flex align-items-center gap-3 py-2 px-3">
-          <div class="card-text fw-bold text-danger fs-4"><?= $product['product_price'] - ($product['product_price'] * $product['product_sale']) / 100 ?>$</div>
+          <div class="card-text fw-bold text-danger"><?= $product['product_price'] - ($product['product_price'] * $product['product_sale']) / 100 ?>$</div>
           <div class="card-text text-decoration-line-through text-body-secondary fs-5"><?= $product['product_price'] ?>$</div>
           <div class="badge bg-danger fs-5">-<?= $product['product_sale'] ?>%</div>
         </div>
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
 
       <div class="card mt-3">
-        <div class="card-header fs-4">
+        <div class="card-header">
           Product description
         </div>
         <ul class="pe-3">
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
 
       <div class="card w-100 mt-3">
-        <div class="card-header fs-4">
+        <div class="card-header">
           Comments
         </div>
 
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </form>
 
       <div class="card w-100 mt-3">
-        <div class="card-header fs-4">
+        <div class="card-header">
           Products of the same category
         </div>
 

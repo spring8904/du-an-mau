@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   if (strlen($password) < 8) {
-    echo "<script>alert('Username must be at least 8 characters')</script>";
+    echo "<script>alert('Password must be at least 8 characters')</script>";
     $valid = false;
   }
 

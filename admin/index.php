@@ -72,6 +72,11 @@ switch ($controller) {
 
   case 'customer':
     switch ($action) {
+      case 'add':
+        $title_web = 'Add Customer';
+        include 'components/header.php';
+        include 'customer/add.php';
+        break;
       case 'edit':
         $title_web = 'Edit Customer';
         include 'components/header.php';

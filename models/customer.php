@@ -1,18 +1,18 @@
 <?php
-function insert_customer($username, $password, $full_name = '', $email = '', $avatar = '')
+function insert_customer($username, $password, $full_name = '', $email = '', $avatar = '', $role = 0)
 {
   if ($avatar != '') {
     $avatar = upload_file($avatar);
-    $sql = "INSERT INTO customers(customer_username, customer_password, customer_full_name, customer_avatar, customer_email) 
-            VALUES ('$username', '$password', '$full_name', '$avatar', '$email')";
+    $sql = "INSERT INTO customers(customer_username, customer_password, customer_full_name, customer_avatar, customer_email, customer_role) 
+            VALUES ('$username', '$password', '$full_name', '$avatar', '$email', '$role')";
   } else {
-    $sql = "INSERT INTO customers(customer_username, customer_password, customer_full_name, customer_email) 
-            VALUES ('$username', '$password', '$full_name', '$email')";
+    $sql = "INSERT INTO customers(customer_username, customer_password, customer_full_name, customer_email, customer_role) 
+            VALUES ('$username', '$password', '$full_name', '$email', '$role')";
   }
   pdo_execute($sql);
 }
 
-function update_customer($id, $username, $password, $full_name, $avatar, $email)
+function update_customer($id, $username, $password, $full_name, $avatar, $email, $role)
 {
   if (isset($avatar) && $avatar['name'] != '') {
     $avatar = upload_file($avatar);
@@ -21,7 +21,7 @@ function update_customer($id, $username, $password, $full_name, $avatar, $email)
   }
 
   $sql = "UPDATE customers 
-          SET customer_username = '$username', customer_password = '$password', customer_full_name='$full_name', customer_avatar = '$avatar', customer_email = '$email' 
+          SET customer_username = '$username', customer_password = '$password', customer_full_name='$full_name', customer_avatar = '$avatar', customer_email = '$email', customer_role = $role 
           WHERE customer_id = $id";
   pdo_execute($sql);
 }

@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="d-flex justify-content-between">
       <div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="./?controller=category" class="btn btn-secondary">Go back</a>
         <button type="reset" class="btn btn-danger">Reset</button>
       </div>
-      <a href="./?controller=category" class="btn btn-secondary">Go back</a>
+      <button type="submit" class="btn btn-primary">Save</button>
     </div>
   </form>
 </main>

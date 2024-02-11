@@ -20,7 +20,7 @@ $next_page = $page >= $total_pages ? $total_pages : $page + 1;
   <h1 class="text-center alert alert-danger">List Customer</h1>
 
   <form class="d-flex gap-2" method="get">
-    <input type="hidden" name="c" value="customer">
+    <input type="hidden" name="controller" value="customer">
     <input class="form-control" type="search" placeholder="Customer username" name="search" value="<?= $search ?>">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
