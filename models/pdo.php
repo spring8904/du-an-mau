@@ -57,9 +57,8 @@ function pdo_query_one($sql)
   }
 }
 
-function upload_file($file)
+function upload_file($file, $target_dir = "../uploads/")
 {
-  $target_dir = "../uploads/";
   $filename = explode('.', $file["name"]);
   $ext = end($filename);
   $file["name"] = uniqid() . '.' . $ext;

@@ -8,7 +8,7 @@ require 'models/comment.php';
 
 session_start();
 if (isset($_COOKIE['customer_id'])) {
-  $_SESSION['customer'] = get_customer_by_id($_COOKIE['customer_id']);
+  $_SESSION['customer_id'] = $_COOKIE['customer_id'];
 }
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] : '';
@@ -61,6 +61,26 @@ switch ($controller) {
     $title_web = 'Register';
     include 'components/header.php';
     include 'pages/register.php';
+    break;
+
+  case 'profile':
+    if (!isset($_SESSION['customer_id'])) {
+      header('location: ./?controller=login');
+    } else {
+      $title_web = 'Profile';
+      include 'components/header.php';
+      include 'pages/profile.php';
+    }
+    break;
+
+  case 'change_password':
+    if (!isset($_SESSION['customer_id'])) {
+      header('location: ./?controller=login');
+    } else {
+      $title_web = 'Change Password';
+      include 'components/header.php';
+      include 'pages/change_password.php';
+    }
     break;
 
   default:

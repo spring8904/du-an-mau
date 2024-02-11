@@ -1,14 +1,15 @@
 <aside class="col col-lg-3 mt-lg-0 mt-3">
   <?php
-  if (isset($_SESSION['customer'])) {
+  if (isset($_SESSION['customer_id'])) {
+    $customer = get_customer_by_id($_SESSION['customer_id']);
   ?>
     <div class="card w-100">
       <div class="card-header">
-        Welcome <span class="fw-semibold text-decoration-underline"><?= $_SESSION['customer']['customer_username'] ?></span>!
+        Welcome <span class="fw-semibold text-decoration-underline"><?= $customer['customer_username'] ?></span>!
       </div>
       <ul class="list-group list-group-flush">
         <?php
-        if ($_SESSION['customer']['customer_role']) {
+        if ($customer['customer_role']) {
         ?>
           <li class="list-group-item">
             <a href="./admin">Admin page</a>

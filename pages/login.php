@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $customer = get_customer_by_username($username);
   if ($customer && password_verify($password, $customer['customer_password'])) {
-    $_SESSION['customer'] = $customer;
+    $_SESSION['customer_id'] = $customer['customer_id'];
     if ($remember_me) {
       setcookie('customer_id', $customer['customer_id'], time() + 3600 * 24 * 30);
     }

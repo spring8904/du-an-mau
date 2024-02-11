@@ -12,10 +12,10 @@ function insert_customer($username, $password, $full_name = '', $email = '', $av
   pdo_execute($sql);
 }
 
-function update_customer($id, $username, $password, $full_name, $avatar, $email, $role)
+function update_customer($id, $username, $password, $full_name, $avatar, $email, $role, $target_dir = "../uploads/")
 {
   if (isset($avatar) && $avatar['name'] != '') {
-    $avatar = upload_file($avatar);
+    $avatar = upload_file($avatar, $target_dir);
   } else {
     $avatar = get_customer_by_id($id)['customer_avatar'];
   }
@@ -23,6 +23,7 @@ function update_customer($id, $username, $password, $full_name, $avatar, $email,
   $sql = "UPDATE customers 
           SET customer_username = '$username', customer_password = '$password', customer_full_name='$full_name', customer_avatar = '$avatar', customer_email = '$email', customer_role = $role 
           WHERE customer_id = $id";
+  echo $sql;
   pdo_execute($sql);
 }
 

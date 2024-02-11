@@ -8,10 +8,12 @@ require '../models/comment.php';
 
 session_start();
 if (isset($_COOKIE['customer_id'])) {
-  $_SESSION['customer'] = get_customer_by_id($_COOKIE['customer_id']);
+  $_SESSION['customer_id'] = $_COOKIE['customer_id'];
 }
 
-if (!isset($_SESSION['customer']) || $_SESSION['customer']['customer_role'] == 0) {
+$customer = get_customer_by_id($_SESSION['customer_id']);
+
+if (!isset($customer) || $customer['customer_role'] == 0) {
   header('location: ../');
 }
 

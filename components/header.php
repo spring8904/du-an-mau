@@ -72,15 +72,16 @@
               </span>
             </a>
             <?php
-            if (isset($_SESSION['customer'])) {
+            if (isset($_SESSION['customer_id'])) {
+              $customer = get_customer_by_id($_SESSION['customer_id']);
             ?>
               <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  <?= $_SESSION['customer']['customer_username'] ?>
+                  <?= $customer['customer_username'] ?>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <?php
-                  if ($_SESSION['customer']['customer_role']) {
+                  if ($customer['customer_role']) {
                   ?>
                     <li><a class="dropdown-item" href="./admin">Admin page</a></li>
                   <?php
