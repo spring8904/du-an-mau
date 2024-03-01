@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="col-md">
         <div class="mb-3">
           <label for="description" class="form-label">Product description:</label>
-          <textarea type="text" class="form-control" id="description" name="product_description" value="<?= $product['product_description'] ?>" rows="2"></textarea>
+          <textarea type="text" class="form-control" id="description" name="product_description" rows="2"><?= $product['product_description'] ?></textarea>
         </div>
 
         <label for="image" class="form-label">Product image:</label>
